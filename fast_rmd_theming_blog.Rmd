@@ -7,29 +7,183 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE,
+  echo = FALSE,
   error = FALSE,
   message = FALSE,
   warning = FALSE
 )
 ```
 
-# Schemas
+```{r}
+library(DiagrammeR)
+library(here)
+```
 
-# `thematic`
+Theming in Rmarkdown can be hard. You first made some custom CSS or use a provided theme but your figures didn't change and you have to style your `ggplot2` theme. And after it you change your mind (or your boss do) and you need to move this color shade to lighter one. So you change your theme, but forgot to change it in all your CSS and something is going wrong. Same goes for fonts...
 
-## how
+Sounds familiar ? Theming is a common problem, because it involves lot of differents elements which aren't ruled by the same command. Your process look like this.
 
-## to do next
+```{r}
+grViz("
+digraph {
 
-+ interactive (plotly / ggiraph)
-+ completes themes
+  graph [overlap = true, fontsize = 10, rankdir = LR]
 
-# `bootstraplib`
+  node [shape = box]
+  rmd [label = 'RMarkdown']
+  ggplot [label = 'gglot2 theme']
+  css [label = 'Custom CSS']
+  output [label = 'Output document']
+
+  rmd -> {ggplot css}
+  {ggplot css} -> output
+  }
+      ")
+```
+
+Thanks to the new `thematic` package and the not so old `bootstraplib` package, you can fastly build themes for your documents without the problems mentioned above.
+
+# Style your graph theme with `thematic`
+
+```{r}
+grViz("
+digraph {
+
+  graph [overlap = true, fontsize = 10, rankdir = LR]
+
+  node [shape = box]
+  rmd [label = 'RMarkdown']
+  thematic [label = 'thematic rules']
+  css [label = 'Custom CSS']
+  output [label = 'Output document']
+
+  rmd -> {thematic css}
+  {thematic css} -> output
+  }
+      ")
+```
+
+If you want to read the docs :
+
++ https://rstudio.github.io/thematic/ ;
++ https://bit.ly/thematic-talk.
+
+## How to use `thematic`
+
+You can style six differents elements :
+
++ `bg` : the background color, here <b style="background-color:#F4F4E2">#F4F4E2</b> ;
++ `fg` : the foreground color, here <b style="background-color:#4c4c4c;color:white">#4c4c4c</b> ;
++ `accent` : the accent color, here <b style="background-color:#741336;color:white">#741336</b>. It will also be used to create a sequential palette ;
++ `font` : the font you want to use, here <b style="font-family:'Special Elite'">Special Elite</b>. You can go further by using `font_spec()` ;
++ `qualitative` : the qualitative palette you want to use ;
++ `sequential` : the sequential palette, which can be controlled using `sequential_gradient()`. By default, it creates a palette from a mix between your background color and your accent color to a mix between your foreground color and your accent color.
+
+You just have to use `thematic_on()` with your parameters to use it.
+
+```{r, echo = TRUE}
+library(thematic)
+library(ggplot2)
+library(tibble)
+
+thematic_on(
+  bg = "#F4F4E2",
+  fg = "#4c4c4c",
+  accent = "#741336",
+  font = font_spec("Special Elite", scale = 0.5),
+  qualitative = paletteer::paletteer_d("dutchmasters::milkmaid"),
+  sequential = sequential_gradient(0.5, 0.75)
+)
+```
+
+After that, just make a normal plot like you are used to.
+
+```{r, echo = TRUE}
+mtcars_plot <- ggplot(tibble(mtcars,
+              model = rownames(mtcars)),
+       aes(x = model, y = mpg, fill = disp)) +
+  geom_col() +
+  geom_text(aes(label = disp), 
+            position = position_stack(vjust = 1.1)) +
+  coord_flip() +
+  labs(title = "A barplot with mtcars",
+       caption = "Source : mtcars data")
+
+mtcars_plot
+```
+
+You can add a theme to your graph but will need some further coding. The last element overlap your styling (which is a good thing) but because complete themes have fonts and/or colors, they may replace your styling, which is bad.
+
+```{r, echo = TRUE}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
+  geom_point(size = 1.1) +
+  geom_smooth() +
+  labs(title = "A nice scatterplot for iris",
+       caption = "Source : Iris data") +
+  theme_minimal(base_family = thematic_get_option("font")$families,
+                base_size = thematic_get_option("font")$scale * 11,
+                base_line_size = 1.1)
+```
+
+```{r}
+thematic_off()
+```
+
+## Some improvements
+
+This is a good package, but it's only the 0.0.1 version and some improvements could be done.
+
++ For the moment, `thematic` doesn't work with interactive graph packages like `plotly` or `ggiraph`. But maybe in the future (see https://talks.cpsievert.me/20200429/#24) ?
+
++ Using completes themes get complicated because it removes some of the choices you did. So you need more styling through the `theme` command to makes everything fine after it. Maybe it would be useful to adapt some themes to make them compatible by default with `thematic` (see https://github.com/rstudio/thematic/issues/16) ? 
+
+# Use `bootstraplib` for Rmarkdown theming
+
+```{r}
+grViz("
+digraph {
+
+  graph [overlap = true, fontsize = 10, rankdir = LR]
+
+  node [shape = box]
+  rmd [label = 'RMarkdown']
+  ggplot [label = 'gglot2 theme']
+  bootstraplib [label = 'bootstraplib']
+  output [label = 'Output document']
+
+  rmd -> {ggplot bootstraplib}
+  {ggplot bootstraplib} -> output
+  }
+      ")
+```
 
 ## to do next
 
 + more outputs : `xaringan`, `flexdashboard`, `pagedown` with standard definition
 
-# `thematic` + `bootstraplib`
+# Both of them is even more powerful
 
+```{r}
+grViz("
+digraph {
+
+  graph [overlap = true, fontsize = 10, rankdir = LR]
+
+  node [shape = box]
+  rmd [label = 'RMarkdown']
+  thematic [label = 'thematic rules']
+  bootstraplib [label = 'bootstraplib']
+  output [label = 'Output document']
+
+  rmd -> bootstraplib -> thematic -> output
+  }
+      ")
+```
+
+## how
+
+# Conclusion
+
+Not everything but a good step for fast theming and "control tower".
+
+Will need some improvements.
