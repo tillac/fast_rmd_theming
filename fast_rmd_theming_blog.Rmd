@@ -23,7 +23,7 @@ Theming in Rmarkdown can be hard. You first made some custom CSS or use a provid
 
 Sounds familiar ? Theming is a common problem, because it involves lot of differents elements which aren't ruled by the same command. Your process look like this.
 
-```{r}
+```{r, fig.height=2}
 grViz("
 digraph {
 
@@ -45,7 +45,7 @@ Thanks to the new `thematic` package and the not so old `bootstraplib` package, 
 
 # Style your graph theme with `thematic`
 
-```{r}
+```{r, fig.height=2}
 grViz("
 digraph {
 
@@ -139,7 +139,7 @@ This is a good package, but it's only the 0.0.1 version and some improvements co
 
 # Use `bootstraplib` for Rmarkdown theming
 
-```{r}
+```{r, fig.height=2}
 grViz("
 digraph {
 
@@ -163,7 +163,7 @@ digraph {
 
 # Both of them is even more powerful
 
-```{r}
+```{r, fig.height=2}
 grViz("
 digraph {
 
