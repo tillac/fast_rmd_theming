@@ -1,0 +1,83 @@
+---
+title: "Example document - `xaringan`"
+author: "Thomas Vroylandt"
+date: "03/05/2020"
+output:
+  xaringan::moon_reader:
+    bootstrap: 4+3
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# bootstraplib part
+library(bootstraplib)
+library(gfonts)
+library(here)
+library(thematic)
+
+# setup and use fonts - google fonts
+# the setup has to be done once
+# setup_font("special-elite", here("www/"))
+use_font("special-elite", here("www/css/special-elite.css"))
+bs_theme_fonts(base = "Special Elite")
+
+# font-size
+bs_theme_add_variables("font-size-base" = "1.2rem")
+
+# colors
+bs_theme_base_colors(bg = "#F4F4E2",
+                     fg = "#4c4c4c")
+
+bs_theme_accent_colors(primary = "#741336")
+
+# thematic part
+thematic_on(font = font_spec("auto", scale = 0.5))
+
+# knitr options
+knitr::opts_chunk$set(
+  echo = FALSE,
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+options(htmltools.dir.version = FALSE)
+```
+
+```{r library}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(flextable)
+library(reactable)
+```
+
+Title
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Graph part
+
+## Iris scatter plot
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat mauris eros, vitae finibus dui venenatis vitae. Aliquam id purus libero. Integer id eros a quam venenatis blandit in blandit nibh. Nulla mollis odio at velit varius, sit amet iaculis enim venenatis. Donec ornare viverra dui, sed dignissim sem. Fusce lacinia hendrerit enim, eget euismod arcu suscipit in. Duis felis orci, fermentum ut enim ac, elementum auctor velit. Aliquam erat volutpat. Vivamus vestibulum sem a tincidunt placerat. Mauris id placerat lacus. Nunc aliquam leo eu gravida tempor. Cras sed dui augue.
+
+---
+
+
+```{r iris_point}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
+  geom_point(size = 1.1) +
+  labs(title = "A nice scatterplot for iris",
+       caption = "Source : Iris data")
+```

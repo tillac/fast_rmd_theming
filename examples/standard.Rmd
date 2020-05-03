@@ -1,0 +1,94 @@
+---
+title: "Example document - no theme"
+author: "Thomas Vroylandt"
+date: "03/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+```{r library}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(flextable)
+library(reactable)
+```
+
+# Graph part
+
+## Iris scatter plot
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat mauris eros, vitae finibus dui venenatis vitae. Aliquam id purus libero. Integer id eros a quam venenatis blandit in blandit nibh. Nulla mollis odio at velit varius, sit amet iaculis enim venenatis. Donec ornare viverra dui, sed dignissim sem. Fusce lacinia hendrerit enim, eget euismod arcu suscipit in. Duis felis orci, fermentum ut enim ac, elementum auctor velit. Aliquam erat volutpat. Vivamus vestibulum sem a tincidunt placerat. Mauris id placerat lacus. Nunc aliquam leo eu gravida tempor. Cras sed dui augue.
+
+Mauris mi magna, fringilla condimentum convallis bibendum, consequat id magna. Pellentesque sed condimentum ligula, auctor bibendum arcu. Nullam sollicitudin pretium magna, facilisis porttitor purus mollis eu. Morbi a elit eu nisl pellentesque placerat. Praesent consequat gravida lorem sed fringilla. Fusce mi felis, tristique non lorem sit amet, maximus iaculis orci. In quis lectus efficitur, mollis augue at, dignissim lectus. Cras ut orci in orci scelerisque rhoncus aliquet sed nisi. 
+
+```{r iris_point, echo=FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
+  geom_point(size = 1.1) +
+  labs(title = "A nice scatterplot for iris",
+       caption = "Source : Iris data")
+```
+
+## Some text paragraph
+
+Maecenas feugiat orci quam, quis posuere ipsum bibendum vel. Curabitur elementum, mi eu venenatis vehicula, mauris sem fermentum lectus, et pharetra sapien dolor tempus urna. Aenean vitae lacus lorem. Praesent sed diam eget metus rhoncus mollis in ut massa. Curabitur gravida sagittis nunc eget maximus. Nunc semper ante est, id efficitur lorem tristique id. Ut lorem leo, lobortis sed volutpat at, finibus nec ex. Nulla facilisi. Aliquam lobortis vulputate nunc ac auctor. 
+
+### Mtcars barplot
+
+```{r mtcars_bar}
+ggplot(tibble(mtcars,
+              model = rownames(mtcars)),
+       aes(x = model, y = mpg, fill = disp)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "A barplot with mtcars",
+       caption = "Source : mtcars data")
+```
+
+Suspendisse non lacinia quam, at bibendum erat. Curabitur cursus libero et porta placerat. Nulla eu lacus a dui euismod dignissim quis eget nunc. Mauris ultrices nulla non lectus scelerisque ultricies. Aliquam vitae suscipit sapien. Vivamus ut maximus dolor. Morbi tortor orci, rutrum a erat vitae, venenatis laoreet nibh. Nulla facilisi. Nam quam turpis, fringilla a imperdiet at, lobortis at lectus.
+
+### Also some text paragraph
+
+Morbi egestas, odio eu pellentesque iaculis, turpis enim aliquam lectus, vitae tristique neque elit at nunc. Etiam fermentum placerat luctus. Sed eu finibus dui, eu gravida mi. Etiam diam odio, efficitur pharetra pretium ac, sollicitudin et metus. Donec tincidunt facilisis malesuada. Morbi consequat leo eu ullamcorper sagittis. Etiam faucibus mauris sagittis tellus laoreet scelerisque. Fusce tincidunt mollis lacus non bibendum. Duis vel eleifend odio. Aliquam vitae placerat lorem. Maecenas sodales, mi non tincidunt porttitor, lorem lacus luctus augue, id tincidunt odio turpis ut risus. Praesent hendrerit turpis libero, vel rutrum mi posuere quis. Integer ut lacinia ex. 
+
+# Table part
+
+## With `kable` and `kableExtra`
+
+```{r tab_kable}
+iris %>% 
+  head() %>% 
+  kable(format = "html") %>%
+  kable_styling()
+```
+
+## With `gt`
+
+```{r tab_gt}
+iris %>% 
+  head() %>% 
+  gt()
+```
+
+## With `flextable`
+
+```{r tab_flextable}
+iris %>% 
+  head() %>% 
+  flextable()
+```
+
+## With `reactable`
+
+```{r tab_reactable}
+iris %>% 
+  head() %>% 
+  reactable()
+```
+
