@@ -1,0 +1,35 @@
+---
+title: "Fast Rmarkdown Theming with `thematic` and `bootstraplib`"
+author: "Thomas Vroylandt"
+date: "03/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Schemas
+
+# `thematic`
+
+## how
+
+## to do next
+
++ interactive (plotly / ggiraph)
++ completes themes
+
+# `bootstraplib`
+
+## to do next
+
++ more outputs : `xaringan`, `flexdashboard`, `pagedown` with standard definition
+
+# `thematic` + `bootstraplib`
+
