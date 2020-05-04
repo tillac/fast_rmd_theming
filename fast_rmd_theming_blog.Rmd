@@ -1,7 +1,7 @@
 ---
 title: "Fast Rmarkdown Theming with `thematic` and `bootstraplib`"
 author: "Thomas Vroylandt"
-date: "03/05/2020"
+date: "04/05/2020"
 output: html_document
 ---
 
@@ -26,45 +26,66 @@ Theming in Rmarkdown can be hard. You first made some custom CSS or use a provid
 
 Sounds familiar ? Theming is a common problem, because it involves lot of differents elements which aren't ruled by the same command. Your process look like this.
 
+<center>
 ```{r, fig.height=2}
 grViz("
 digraph {
 
   graph [overlap = true, fontsize = 10, rankdir = LR]
 
-  node [shape = box]
-  rmd [label = 'RMarkdown']
-  ggplot [label = 'gglot2 theme']
-  css [label = 'Custom CSS']
-  output [label = 'Output document']
+  node [shape = oval,
+        fontname = Lato,
+        color = '#000000',
+        fontcolor = '#000000']
+    rmd [label = 'RMarkdown']
+    ggplot [label = 'gglot2 theme']
+    css [label = 'Custom CSS']
+    output [label = 'Output document']
 
-  rmd -> {ggplot css}
-  {ggplot css} -> output
+  edge [arrowhead = vee,
+        arrowsize = 0.5,
+        color = '#000000']
+    rmd -> {ggplot css}
+    {ggplot css} -> output
   }
       ")
 ```
+</center>
 
 Thanks to the new `thematic` package and the not so old `bootstraplib` package, you can fastly build themes for your documents without the problems mentioned above.
 
 # Style your graph theme with `thematic`
 
-```{r, fig.height=2}
+<center>
+```{r, fig.height=2, fig.align='center'}
 grViz("
 digraph {
 
   graph [overlap = true, fontsize = 10, rankdir = LR]
 
-  node [shape = box]
-  rmd [label = 'RMarkdown']
-  thematic [label = 'thematic rules']
-  css [label = 'Custom CSS']
-  output [label = 'Output document']
+  node [shape = oval,
+        fontname = Lato,
+        color = '#000000',
+        fontcolor = '#000000']
+    rmd [label = 'RMarkdown']
+    thematic [label = 'thematic rules', 
+              color = '#741336', 
+              fontcolor = '#741336',
+              penwidth = 2.5]
+    css [label = 'Custom CSS']
+    output [label = 'Output document']
 
-  rmd -> {thematic css}
-  {thematic css} -> output
+  edge [arrowhead = vee,
+        arrowsize = 0.5,
+        color = '#000000']
+    rmd -> css
+    rmd -> thematic [color = '#741336']
+    thematic -> output [color = '#741336']
+    css -> output
   }
       ")
 ```
+</center>
 
 If you want to read the docs :
 
@@ -101,8 +122,8 @@ thematic_on(
 
 After that, just make a normal plot like you are used to.
 
-```{r, echo = TRUE}
-mtcars_plot <- ggplot(tibble(mtcars,
+```{r, echo = TRUE, fig.align='center'}
+ggplot(tibble(mtcars,
               model = rownames(mtcars)),
        aes(x = model, y = mpg, fill = disp)) +
   geom_col() +
@@ -111,13 +132,11 @@ mtcars_plot <- ggplot(tibble(mtcars,
   coord_flip() +
   labs(title = "A barplot with mtcars",
        caption = "Source : mtcars data")
-
-mtcars_plot
 ```
 
 You can add a theme to your graph but will need some further coding. The last element overlap your styling (which is a good thing) but because complete themes have fonts and/or colors, they may replace your styling, which is bad.
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, fig.align='center'}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
   geom_point(size = 1.1) +
   geom_smooth() +
@@ -142,23 +161,36 @@ This is a good package, but it's only the 0.0.1 version and some improvements co
 
 # Use `bootstraplib` for Rmarkdown theming
 
-```{r, fig.height=2}
+<center>
+```{r, fig.height=2, fig.align='center'}
 grViz("
 digraph {
 
   graph [overlap = true, fontsize = 10, rankdir = LR]
 
-  node [shape = box]
-  rmd [label = 'RMarkdown']
-  ggplot [label = 'gglot2 theme']
-  bootstraplib [label = 'bootstraplib']
-  output [label = 'Output document']
+  node [shape = oval,
+        fontname = Lato,
+        color = '#000000',
+        fontcolor = '#000000']
+    rmd [label = 'RMarkdown']
+    ggplot [label = 'gglot2 theme']
+    bootstraplib [label = 'bootstraplib', 
+                  color = '#741336', 
+                  fontcolor = '#741336',
+                  penwidth = 2.5]
+    output [label = 'Output document']
 
-  rmd -> {ggplot bootstraplib}
-  {ggplot bootstraplib} -> output
+  edge [arrowhead = vee,
+        arrowsize = 0.5,
+        color = '#000000']
+    rmd -> ggplot 
+    rmd -> bootstraplib [color = '#741336']
+    bootstraplib -> output [color = '#741336']
+    ggplot -> output
   }
       ")
 ```
+</center>
 
 Some ressources on the subject :
 
@@ -228,25 +260,38 @@ bs_theme_accent_colors(primary = "#741336")
   + `reactable` has the font size, family and color ;
   + `flextable` has the right background color but not the font size/family/color.
 
-
 # Both of them is even more powerful
 
-```{r, fig.height=2}
+<center>
+```{r, fig.height=1.5, fig.width = 8, fig.align='center'}
 grViz("
 digraph {
 
   graph [overlap = true, fontsize = 10, rankdir = LR]
 
-  node [shape = box]
-  rmd [label = 'RMarkdown']
-  thematic [label = 'thematic rules']
-  bootstraplib [label = 'bootstraplib']
-  output [label = 'Output document']
+  node [shape = oval,
+        fontname = Lato,
+        color = '#000000',
+        fontcolor = '#000000']
+    rmd [label = 'RMarkdown']
+    thematic [label = 'thematic rules', 
+              color = '#741336', 
+              fontcolor = '#741336',
+              penwidth = 2.5]
+    bootstraplib [label = 'bootstraplib', 
+                  color = '#741336', 
+                  fontcolor = '#741336',
+                  penwidth = 2.5]
+    output [label = 'Output document']
 
-  rmd -> bootstraplib -> thematic -> output
+  edge [arrowhead = vee,
+        arrowsize = 0.5,
+        color = '#741336']
+    rmd -> bootstraplib -> thematic -> output
   }
       ")
 ```
+</center>
 
 If you use `thematic` after `bootstraplib` in a Rmarkdown document (it's also true for Shiny), it will retrieve the styling you passed and use them. That's a very powerful feature because you will only need to style your document once.
 
@@ -287,8 +332,8 @@ tibble(
     "auto",
     "auto",
     "auto",
-    "`font_spec('auto)`",
-    "`font_spec('auto)`",
+    "`font_spec('auto')`",
+    "`font_spec('auto', scale = )`",
     "auto",
     ""
   ),
