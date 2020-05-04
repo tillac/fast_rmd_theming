@@ -7932,6 +7932,15 @@ color: #333333;
   }
 });
 </script>
+<script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -8107,13 +8116,13 @@ summary {
 
 <p>Theming in Rmarkdown can be hard. You first made some custom CSS or use a provided theme but your figures didn’t change and you have to style your <code>ggplot2</code> theme. And after it you change your mind (or your boss do) and you need to move this color shade to lighter one. So you change your theme, but forgot to change it in all your CSS and something is going wrong. Same goes for fonts…</p>
 <p>Sounds familiar ? Theming is a common problem, because it involves lot of differents elements which aren’t ruled by the same command. Your process look like this.</p>
-<div id="htmlwidget-fd740c75762fd2001ef8" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fd740c75762fd2001ef8">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot css}\n  {ggplot css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c2f5112c6d9948f8b68f" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c2f5112c6d9948f8b68f">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot css}\n  {ggplot css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Thanks to the new <code>thematic</code> package and the not so old <code>bootstraplib</code> package, you can fastly build themes for your documents without the problems mentioned above.</p>
 <div id="style-your-graph-theme-with-thematic" class="section level1">
 <h1>Style your graph theme with <code>thematic</code></h1>
-<div id="htmlwidget-a42d3d3e5fde6308eb8b" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a42d3d3e5fde6308eb8b">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {thematic css}\n  {thematic css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2082143588a71c199d77" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2082143588a71c199d77">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {thematic css}\n  {thematic css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>If you want to read the docs :</p>
 <ul>
 <li><a href="https://rstudio.github.io/thematic/" class="uri">https://rstudio.github.io/thematic/</a> ;</li>
@@ -8178,46 +8187,238 @@ mtcars_plot</code></pre>
 </div>
 <div id="use-bootstraplib-for-rmarkdown-theming" class="section level1">
 <h1>Use <code>bootstraplib</code> for Rmarkdown theming</h1>
-<div id="htmlwidget-21d4e04c0eb6f51d909a" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-21d4e04c0eb6f51d909a">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot bootstraplib}\n  {ggplot bootstraplib} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<div id="how" class="section level2">
-<h2>how</h2>
-</div>
-<div id="to-do-next" class="section level2">
-<h2>to do next</h2>
+<div id="htmlwidget-37e65b7e3715115407a2" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-37e65b7e3715115407a2">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot bootstraplib}\n  {ggplot bootstraplib} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>Some ressources on the subject :</p>
+<ul>
+<li><a href="https://rstudio.github.io/bootstraplib/" class="uri">https://rstudio.github.io/bootstraplib/</a> ;</li>
+<li><a href="https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&amp;prevCol=6275649&amp;ts=6836" class="uri">https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&amp;prevCol=6275649&amp;ts=6836</a>.</li>
+</ul>
+<div id="how-to-use-bootstraplib" class="section level2">
+<h2>How to use <code>bootstraplib</code></h2>
+<p><code>bootstraplib</code> calls Bootstrap and allow you to style directly your document (RMarkdown or Shiny) from R using Sass. You can do a lot with this package. But we will only cover some part of it.</p>
+<p>First you need to reference the use of Bootstrap in the YAML header of your Rmd.</p>
+<pre class="r"><code>---
+output:
+  html_document:
+    bootstrap_version: 4+3
+---</code></pre>
+<p>After that you can use some functions to style your main elements :</p>
+<ul>
+<li><code>bs_theme_base_colors()</code> allows you to set you background (with <code>bg</code>) and foreground (with <code>fg</code>) colors ;</li>
+<li><code>bs_theme_accent_colors()</code> for the accent colors ;</li>
+<li><code>bs_theme_fonts()</code> for the fonts.</li>
+</ul>
+<p>You can also add some hand-made rules with <code>bs_theme_add_variables()</code>. As an example <code>bs_theme_add_variables(&quot;font-size-base&quot; = &quot;0.9rem&quot;)</code> will style the size of your fonts.</p>
+<p>If you want to use Google Fonts, you may need the <code>gfonts</code> package, made by dreamRs (<a href="https://github.com/dreamRs/gfonts" class="uri">https://github.com/dreamRs/gfonts</a>). It offers simple functions to deal with Google Fonts.</p>
+<p>As an example, here is the code chunk which creates the document just below.</p>
+<pre class="r"><code># bootstraplib part
+library(bootstraplib)
+library(gfonts)
+
+# setup and use font
+# the setup has to be done once
+setup_font(&quot;special-elite&quot;, &quot;www/&quot;)
+use_font(&quot;special-elite&quot;, &quot;www/css/special-elite.css&quot;)
+
+bs_theme_fonts(base = &quot;Special Elite&quot;)
+
+# font-size
+bs_theme_add_variables(&quot;font-size-base&quot; = &quot;0.9rem&quot;)
+
+# colors
+bs_theme_base_colors(bg = &quot;#F4F4E2&quot;,
+                     fg = &quot;#4c4c4c&quot;)
+
+bs_theme_accent_colors(primary = &quot;#741336&quot;)</code></pre>
 <iframe width="100%" src="examples/bootstraplib_gfonts.html">
 </iframe>
+</div>
+<div id="improvements" class="section level2">
+<h2>Improvements</h2>
 <ul>
-<li><p>more outputs : <code>xaringan</code>, <code>flexdashboard</code>, <code>pagedown</code> with standard definition</p></li>
-<li>tables adaptations : only <code>kable</code> is full ok… the other need some styling
+<li><p>The package will need to deal with more outputs. It doesn’t work with <code>xaringan</code> and <code>pagedown</code> for the moment and strange with <code>flexdashboard</code>.</p></li>
+<li><p>You will need to style your table manually. For the moment, only <code>kable</code> works well with <code>bootstraplib</code>. The other packages I tested all failed on one part :</p>
 <ul>
-<li><code>gt</code> has the font family only</li>
-<li><code>reactable</code> has the font size, family and color</li>
-<li><code>flextable</code> has the the background color but not font size/family/color</li>
+<li><code>gt</code> has the font family only ;</li>
+<li><code>reactable</code> has the font size, family and color ;</li>
+<li><code>flextable</code> has the right background color but not the font size/family/color.</li>
 </ul></li>
 </ul>
-<p>-&gt; faire un tableau</p>
 </div>
 </div>
 <div id="both-of-them-is-even-more-powerful" class="section level1">
 <h1>Both of them is even more powerful</h1>
-<div id="htmlwidget-f7a6b63ecde88d2abca8" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7a6b63ecde88d2abca8">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> bootstraplib -> thematic -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<div id="how-1" class="section level2">
-<h2>how</h2>
+<div id="htmlwidget-d24f7c58200e00e8970e" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d24f7c58200e00e8970e">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> bootstraplib -> thematic -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>If you use <code>thematic</code> after <code>bootstraplib</code> in a Rmarkdown document (it’s also true for Shiny), it will retrieve the styling you passed and use them. That’s a very powerful feature because you will only need to style your document once.</p>
+<p>The only thing you need to care about is the font. You have to set it to <code>auto</code> inside <code>thematic_on()</code> to get it nicely.</p>
+<p>Here is the corresponding functions between the two packages :</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Feature
+</th>
+<th style="text-align:left;">
+Using <code>thematic</code>
+</th>
+<th style="text-align:left;">
+Using <code>bootstraplib</code>
+</th>
+<th style="text-align:left;">
+Using both
+</th>
+<th style="text-align:left;">
+Additional infos
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Background color
+</td>
+<td style="text-align:left;">
+<code>bg</code>
+</td>
+<td style="text-align:left;">
+<code>bs_theme_base_colors(bg = )</code>
+</td>
+<td style="text-align:left;">
+auto
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Foreground color
+</td>
+<td style="text-align:left;">
+<code>fg</code>
+</td>
+<td style="text-align:left;">
+<code>bs_theme_base_colors(fg = )</code>
+</td>
+<td style="text-align:left;">
+auto
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Accent color
+</td>
+<td style="text-align:left;">
+<code>accent</code>
+</td>
+<td style="text-align:left;">
+<code>bs_theme_accent_colors(primary = )</code>
+</td>
+<td style="text-align:left;">
+auto
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Font family
+</td>
+<td style="text-align:left;">
+<code>font</code>
+</td>
+<td style="text-align:left;">
+<code>bs_theme_fonts(base = )</code>
+</td>
+<td style="text-align:left;">
+<code>font_spec('auto)</code>
+</td>
+<td style="text-align:left;">
+May need <code>gfonts</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Font size
+</td>
+<td style="text-align:left;">
+<code>font_spec(scale = )</code>
+</td>
+<td style="text-align:left;">
+<code>bs_theme_add_variables('font-size-base' = )</code>
+</td>
+<td style="text-align:left;">
+<code>font_spec('auto)</code>
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sequential palette
+</td>
+<td style="text-align:left;">
+<code>sequential</code>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+auto
+</td>
+<td style="text-align:left;">
+Calculated from background, foreground and accent color
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Qualitative palette
+</td>
+<td style="text-align:left;">
+<code>qualitative</code>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Manual
+</td>
+</tr>
+</tbody>
+</table>
+<p>As an example, if you use both packages together.</p>
+<pre class="r"><code># bootstraplib part
+library(bootstraplib)
+library(gfonts)
+library(thematic)
+
+# setup and use fonts - google fonts
+# the setup has to be done once
+setup_font(&quot;special-elite&quot;, &quot;www/&quot;)
+use_font(&quot;special-elite&quot;, &quot;www/css/special-elite.css&quot;)
+bs_theme_fonts(base = &quot;Special Elite&quot;)
+
+# font-size
+bs_theme_add_variables(&quot;font-size-base&quot; = &quot;0.9rem&quot;)
+
+# colors
+bs_theme_base_colors(bg = &quot;#F4F4E2&quot;,
+                     fg = &quot;#4c4c4c&quot;)
+
+bs_theme_accent_colors(primary = &quot;#741336&quot;)
+
+# thematic part
+thematic_on(font = font_spec(&quot;auto&quot;, scale = 0.5))</code></pre>
 <iframe width="100%" src="examples/bootstraplib_thematic.html">
 </iframe>
 </div>
-</div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<p>Not everything but a good step for fast theming and “control tower”.</p>
-<p>Will need some improvements :</p>
-<ul>
-<li>other formats for <code>bootstraplib</code></li>
-</ul>
-<iframe width="100%" src="examples/flexdashboard.html">
-</iframe>
+<p>This two packages don’t do everything but it’s a good step if you don’t want to spend a lot of time styling your RMarkdown document. It could also be a first step to more personalized styling as you can export it.</p>
+<p>Personly, I really like the “control tower” approach. It doesn’t force you to repeat your styling and makes it really easier to change.</p>
 </div>
 
 

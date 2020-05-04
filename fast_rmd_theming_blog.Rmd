@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
 ```{r}
 library(DiagrammeR)
 library(here)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
 ```
 
 Theming in Rmarkdown can be hard. You first made some custom CSS or use a provided theme but your figures didn't change and you have to style your `ggplot2` theme. And after it you change your mind (or your boss do) and you need to move this color shade to lighter one. So you change your theme, but forgot to change it in all your CSS and something is going wrong. Same goes for fonts...
@@ -157,25 +160,74 @@ digraph {
       ")
 ```
 
-## how
+Some ressources on the subject :
 
-## to do next
++ https://rstudio.github.io/bootstraplib/ ;
++ https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&prevCol=6275649&ts=6836.
 
+## How to use `bootstraplib`
+
+`bootstraplib` calls Bootstrap and allow you to style directly your document (RMarkdown or Shiny) from R using Sass. You can do a lot with this package. But we will only cover some part of it.
+
+First you need to reference the use of Bootstrap in the YAML header of your Rmd.
+
+```{r, eval = FALSE, echo = TRUE}
+---
+output:
+  html_document:
+    bootstrap_version: 4+3
+---
+```
+
+After that you can use some functions to style your main elements :
+
++ `bs_theme_base_colors()` allows you to set you background (with `bg`) and foreground (with `fg`) colors ;
++ `bs_theme_accent_colors()` for the accent colors ;
++ `bs_theme_fonts()` for the fonts.
+
+You can also add some hand-made rules with `bs_theme_add_variables()`. As an example `bs_theme_add_variables("font-size-base" = "0.9rem")` will style the size of your fonts.
+
+If you want to use Google Fonts, you may need the `gfonts` package, made by dreamRs (https://github.com/dreamRs/gfonts). It offers simple functions to deal with Google Fonts.
+
+As an example, here is the code chunk which creates the document just below.
+
+```{r, eval=FALSE, echo = TRUE}
+# bootstraplib part
+library(bootstraplib)
+library(gfonts)
+
+# setup and use font
+# the setup has to be done once
+setup_font("special-elite", "www/")
+use_font("special-elite", "www/css/special-elite.css")
+
+bs_theme_fonts(base = "Special Elite")
+
+# font-size
+bs_theme_add_variables("font-size-base" = "0.9rem")
+
+# colors
+bs_theme_base_colors(bg = "#F4F4E2",
+                     fg = "#4c4c4c")
+
+bs_theme_accent_colors(primary = "#741336")
+```
 
 <iframe 
   width = "100%"
   src ="examples/bootstraplib_gfonts.html">
 </iframe>
 
+## Improvements
 
-+ more outputs : `xaringan`, `flexdashboard`, `pagedown` with standard definition
++ The package will need to deal with more outputs. It doesn't work with `xaringan` and `pagedown` for the moment and strange with `flexdashboard`.
 
-+ tables adaptations : only `kable` is full ok... the other need some styling
-  + `gt` has the font family only
-  + `reactable` has the font size, family and color
-  + `flextable` has the the background color but not font size/family/color
-  
--> faire un tableau
++ You will need to style your table manually. For the moment, only `kable` works well with `bootstraplib`. The other packages I tested all failed on one part :
+
+  + `gt` has the font family only ;
+  + `reactable` has the font size, family and color ;
+  + `flextable` has the right background color but not the font size/family/color.
+
 
 # Both of them is even more powerful
 
@@ -196,7 +248,99 @@ digraph {
       ")
 ```
 
-## how
+If you use `thematic` after `bootstraplib` in a Rmarkdown document (it's also true for Shiny), it will retrieve the styling you passed and use them. That's a very powerful feature because you will only need to style your document once.
+
+The only thing you need to care about is the font. You have to set it to `auto` inside `thematic_on()` to get it nicely.
+
+Here is the corresponding functions between the two packages :
+
+```{r}
+tibble(
+  name = c(
+    "Background color",
+    "Foreground color",
+    "Accent color",
+    "Font family",
+    "Font size",
+    "Sequential palette",
+    "Qualitative palette"
+  ),
+  thematic = c(
+    "`bg`",
+    "`fg`",
+    "`accent`",
+    "`font`",
+    "`font_spec(scale = )`",
+    "`sequential`",
+    "`qualitative`"
+  ),
+  bootstraplib = c(
+    "`bs_theme_base_colors(bg = )`",
+    "`bs_theme_base_colors(fg = )`",
+    "`bs_theme_accent_colors(primary = )`",
+    "`bs_theme_fonts(base = )`",
+    "`bs_theme_add_variables('font-size-base' = )`",
+    "",
+    ""
+  ),
+  both = c(
+    "auto",
+    "auto",
+    "auto",
+    "`font_spec('auto)`",
+    "`font_spec('auto)`",
+    "auto",
+    ""
+  ),
+  info = c(
+    "",
+    "",
+    "",
+    "May need `gfonts`",
+    "",
+    "Calculated from background, foreground and accent color",
+    "Manual"
+  )
+) %>%
+  kable(
+    "html",
+    col.names = c(
+      "Feature",
+      "Using `thematic`",
+      "Using `bootstraplib`",
+      "Using both",
+      "Additional infos"
+    )
+  ) %>%
+  kable_styling()
+```
+
+As an example, if you use both packages together.
+
+```{r, eval=FALSE, echo = TRUE}
+# bootstraplib part
+library(bootstraplib)
+library(gfonts)
+library(thematic)
+
+# setup and use fonts - google fonts
+# the setup has to be done once
+setup_font("special-elite", "www/")
+use_font("special-elite", "www/css/special-elite.css")
+bs_theme_fonts(base = "Special Elite")
+
+# font-size
+bs_theme_add_variables("font-size-base" = "0.9rem")
+
+# colors
+bs_theme_base_colors(bg = "#F4F4E2",
+                     fg = "#4c4c4c")
+
+bs_theme_accent_colors(primary = "#741336")
+
+# thematic part
+thematic_on(font = font_spec("auto", scale = 0.5))
+```
 
 <iframe 
   width = "100%"
@@ -205,13 +349,6 @@ digraph {
 
 # Conclusion
 
-Not everything but a good step for fast theming and "control tower".
+This two packages don't do everything but it's a good step if you don't want to spend a lot of time styling your RMarkdown document. It could also be a first step to more personalized styling as you can export it.
 
-Will need some improvements :
-
-+ other formats for `bootstraplib`
-
-<iframe 
-  width = "100%"
-  src ="examples/flexdashboard.html">
-</iframe>
+Personly, I really like the "control tower" approach. It doesn't force you to repeat your styling and makes it really easier to change.
