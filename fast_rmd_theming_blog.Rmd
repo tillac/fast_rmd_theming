@@ -157,7 +157,16 @@ digraph {
       ")
 ```
 
+## how
+
 ## to do next
+
+
+<iframe 
+  width = "100%"
+  src ="examples/bootstraplib_gfonts.html">
+</iframe>
+
 
 + more outputs : `xaringan`, `flexdashboard`, `pagedown` with standard definition
 
@@ -182,8 +191,20 @@ digraph {
 
 ## how
 
+<iframe 
+  width = "100%"
+  src ="examples/bootstraplib_thematic.html">
+</iframe>
+
 # Conclusion
 
 Not everything but a good step for fast theming and "control tower".
 
-Will need some improvements.
+Will need some improvements :
+
++ other formats for `bootstraplib`
+
+<iframe 
+  width = "100%"
+  src ="examples/flexdashboard.html">
+</iframe>

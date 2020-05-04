@@ -8107,13 +8107,13 @@ summary {
 
 <p>Theming in Rmarkdown can be hard. You first made some custom CSS or use a provided theme but your figures didn’t change and you have to style your <code>ggplot2</code> theme. And after it you change your mind (or your boss do) and you need to move this color shade to lighter one. So you change your theme, but forgot to change it in all your CSS and something is going wrong. Same goes for fonts…</p>
 <p>Sounds familiar ? Theming is a common problem, because it involves lot of differents elements which aren’t ruled by the same command. Your process look like this.</p>
-<div id="htmlwidget-827a576ac05044be1f19" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-827a576ac05044be1f19">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot css}\n  {ggplot css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-abbcdb96f12ca7f47162" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-abbcdb96f12ca7f47162">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot css}\n  {ggplot css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>Thanks to the new <code>thematic</code> package and the not so old <code>bootstraplib</code> package, you can fastly build themes for your documents without the problems mentioned above.</p>
 <div id="style-your-graph-theme-with-thematic" class="section level1">
 <h1>Style your graph theme with <code>thematic</code></h1>
-<div id="htmlwidget-7bc831584f9fe3f2890d" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7bc831584f9fe3f2890d">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {thematic css}\n  {thematic css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2c436947dd77db3433a8" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2c436947dd77db3433a8">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  css [label = \"Custom CSS\"]\n  output [label = \"Output document\"]\n\n  rmd -> {thematic css}\n  {thematic css} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>If you want to read the docs :</p>
 <ul>
 <li><a href="https://rstudio.github.io/thematic/" class="uri">https://rstudio.github.io/thematic/</a> ;</li>
@@ -8178,10 +8178,15 @@ mtcars_plot</code></pre>
 </div>
 <div id="use-bootstraplib-for-rmarkdown-theming" class="section level1">
 <h1>Use <code>bootstraplib</code> for Rmarkdown theming</h1>
-<div id="htmlwidget-78fdab2fcc1e6a708f55" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-78fdab2fcc1e6a708f55">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot bootstraplib}\n  {ggplot bootstraplib} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-307d3165d71508f38fbd" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-307d3165d71508f38fbd">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  ggplot [label = \"gglot2 theme\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> {ggplot bootstraplib}\n  {ggplot bootstraplib} -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="how" class="section level2">
+<h2>how</h2>
+</div>
 <div id="to-do-next" class="section level2">
 <h2>to do next</h2>
+<iframe width="100%" src="examples/bootstraplib_gfonts.html">
+</iframe>
 <ul>
 <li>more outputs : <code>xaringan</code>, <code>flexdashboard</code>, <code>pagedown</code> with standard definition</li>
 </ul>
@@ -8189,16 +8194,23 @@ mtcars_plot</code></pre>
 </div>
 <div id="both-of-them-is-even-more-powerful" class="section level1">
 <h1>Both of them is even more powerful</h1>
-<div id="htmlwidget-b9edd11a08636a456bb8" style="width:672px;height:192px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b9edd11a08636a456bb8">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> bootstraplib -> thematic -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<div id="how" class="section level2">
+<div id="htmlwidget-895d2329cb6e41f76f70" style="width:672px;height:192px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-895d2329cb6e41f76f70">{"x":{"diagram":"\ndigraph {\n\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  node [shape = box]\n  rmd [label = \"RMarkdown\"]\n  thematic [label = \"thematic rules\"]\n  bootstraplib [label = \"bootstraplib\"]\n  output [label = \"Output document\"]\n\n  rmd -> bootstraplib -> thematic -> output\n  }\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="how-1" class="section level2">
 <h2>how</h2>
+<iframe width="100%" src="examples/bootstraplib_thematic.html">
+</iframe>
 </div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
 <p>Not everything but a good step for fast theming and “control tower”.</p>
-<p>Will need some improvements.</p>
+<p>Will need some improvements :</p>
+<ul>
+<li>other formats for <code>bootstraplib</code></li>
+</ul>
+<iframe width="100%" src="examples/flexdashboard.html">
+</iframe>
 </div>
 
 
