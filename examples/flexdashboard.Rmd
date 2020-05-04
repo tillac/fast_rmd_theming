@@ -1,7 +1,5 @@
 ---
-title: "Example document - `flexdashboard`"
-author: "Thomas Vroylandt"
-date: "03/05/2020"
+title: "Example - `flexdashboard`"
 output: 
   flexdashboard::flex_dashboard:
     bootstrap: 4+3
@@ -49,11 +47,6 @@ options(htmltools.dir.version = FALSE)
 
 ```{r library}
 library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(gt)
-library(flextable)
-library(reactable)
 ```
 
 

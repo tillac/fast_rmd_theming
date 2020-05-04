@@ -170,6 +170,13 @@ digraph {
 
 + more outputs : `xaringan`, `flexdashboard`, `pagedown` with standard definition
 
++ tables adaptations : only `kable` is full ok... the other need some styling
+  + `gt` has the font family only
+  + `reactable` has the font size, family and color
+  + `flextable` has the the background color but not font size/family/color
+  
+-> faire un tableau
+
 # Both of them is even more powerful
 
 ```{r, fig.height=2}

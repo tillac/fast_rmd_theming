@@ -1,8 +1,7 @@
 ---
-title: "Example document - no theme"
-author: "Thomas Vroylandt"
-date: "03/05/2020"
-output: html_document
+title: "Example - no theme"
+output: 
+  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -13,11 +12,6 @@ knitr::opts_chunk$set(echo = FALSE,
 
 ```{r library}
 library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(gt)
-library(flextable)
-library(reactable)
 ```
 
 # Graph part
@@ -56,39 +50,4 @@ Suspendisse non lacinia quam, at bibendum erat. Curabitur cursus libero et porta
 ### Also some text paragraph
 
 Morbi egestas, odio eu pellentesque iaculis, turpis enim aliquam lectus, vitae tristique neque elit at nunc. Etiam fermentum placerat luctus. Sed eu finibus dui, eu gravida mi. Etiam diam odio, efficitur pharetra pretium ac, sollicitudin et metus. Donec tincidunt facilisis malesuada. Morbi consequat leo eu ullamcorper sagittis. Etiam faucibus mauris sagittis tellus laoreet scelerisque. Fusce tincidunt mollis lacus non bibendum. Duis vel eleifend odio. Aliquam vitae placerat lorem. Maecenas sodales, mi non tincidunt porttitor, lorem lacus luctus augue, id tincidunt odio turpis ut risus. Praesent hendrerit turpis libero, vel rutrum mi posuere quis. Integer ut lacinia ex. 
-
-# Table part
-
-## With `kable` and `kableExtra`
-
-```{r tab_kable}
-iris %>% 
-  head() %>% 
-  kable(format = "html") %>%
-  kable_styling()
-```
-
-## With `gt`
-
-```{r tab_gt}
-iris %>% 
-  head() %>% 
-  gt()
-```
-
-## With `flextable`
-
-```{r tab_flextable}
-iris %>% 
-  head() %>% 
-  flextable()
-```
-
-## With `reactable`
-
-```{r tab_reactable}
-iris %>% 
-  head() %>% 
-  reactable()
-```
 
