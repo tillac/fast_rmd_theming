@@ -54,7 +54,7 @@ digraph {
 
 Thanks to the new `thematic` package and the not so old `bootstraplib` package, you can fastly build themes for your documents without the problems mentioned above.
 
-# Style your graph theme with `thematic`
+## Style your graph theme with `thematic`
 
 <center>
 ```{r, fig.height=2, fig.align='center'}
@@ -86,13 +86,6 @@ digraph {
       ")
 ```
 </center>
-
-If you want to read the docs :
-
-+ https://rstudio.github.io/thematic/ ;
-+ https://bit.ly/thematic-talk.
-
-## How to use `thematic`
 
 You can style six differents elements :
 
@@ -134,7 +127,7 @@ ggplot(tibble(mtcars,
        caption = "Source : mtcars data")
 ```
 
-You can add a theme to your graph but will need some further coding. The last element overlap your styling (which is a good thing) but because complete themes have fonts and/or colors, they may replace your styling, which is bad.
+You can add a theme to your graph but will need some further coding. But you need to know that the last element overlap your styling. Because complete themes have fonts and/or colors, they may replace your styling. Wouldn't it be useful to adapt some themes to make them compatible by default with `thematic` (see https://github.com/rstudio/thematic/issues/16) ? 
 
 ```{r, echo = TRUE, fig.align='center'}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
@@ -151,15 +144,9 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
 thematic_off()
 ```
 
-## Some improvements
+For the moment, `thematic` doesn't work with interactive graph packages like `plotly` or `ggiraph`. But maybe in the future (see https://talks.cpsievert.me/20200429/#24) ?
 
-This is a good package, but it's only the 0.0.1 version and some improvements could be done.
-
-+ For the moment, `thematic` doesn't work with interactive graph packages like `plotly` or `ggiraph`. But maybe in the future (see https://talks.cpsievert.me/20200429/#24) ?
-
-+ Using completes themes get complicated because it removes some of the choices you did. So you need more styling through the `theme` command to makes everything fine after it. Maybe it would be useful to adapt some themes to make them compatible by default with `thematic` (see https://github.com/rstudio/thematic/issues/16) ? 
-
-# Use `bootstraplib` for Rmarkdown theming
+## Use `bootstraplib` for Rmarkdown theming
 
 <center>
 ```{r, fig.height=2, fig.align='center'}
@@ -192,14 +179,7 @@ digraph {
 ```
 </center>
 
-Some ressources on the subject :
-
-+ https://rstudio.github.io/bootstraplib/ ;
-+ https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&prevCol=6275649&ts=6836.
-
-## How to use `bootstraplib`
-
-`bootstraplib` calls Bootstrap and allow you to style directly your document (RMarkdown or Shiny) from R using Sass. You can do a lot with this package. But we will only cover some part of it.
+It calls Bootstrap and allow you to style directly your document (RMarkdown or Shiny) from R using Sass. You can do a lot with this package. But we will only cover some part of it.
 
 First you need to reference the use of Bootstrap in the YAML header of your Rmd.
 
@@ -250,17 +230,17 @@ bs_theme_accent_colors(primary = "#741336")
   src ="examples/bootstraplib_gfonts.html">
 </iframe>
 
-## Improvements
+You need to keep in mind two things, when using `bootstraplib` for R Markdown :
 
-+ The package will need to deal with more outputs. It doesn't work with `xaringan` and `pagedown` for the moment and strange with `flexdashboard`.
++ The package doesn't work yet with `xaringan` and `pagedown` for the moment and strangely with `flexdashboard`.
 
-+ You will need to style your table manually. For the moment, only `kable` works well with `bootstraplib`. The other packages I tested all failed on one part :
++ You will need to style your table manually. For the moment, only `kable` works well. This comes from the tables packages CSS behavior. The other packages I tested all failed on one part :
 
   + `gt` has the font family only ;
   + `reactable` has the font size, family and color ;
   + `flextable` has the right background color but not the font size/family/color.
 
-# Both of them is even more powerful
+## Forging a theme with both packages
 
 <center>
 ```{r, fig.height=1.5, fig.width = 8, fig.align='center'}
@@ -297,7 +277,7 @@ If you use `thematic` after `bootstraplib` in a Rmarkdown document (it's also tr
 
 The only thing you need to care about is the font. You have to set it to `auto` inside `thematic_on()` to get it nicely.
 
-Here is the corresponding functions between the two packages :
+Here are the corresponding functions between the two packages :
 
 ```{r}
 tibble(
@@ -392,8 +372,20 @@ thematic_on(font = font_spec("auto", scale = 0.5))
   src ="examples/bootstraplib_thematic.html">
 </iframe>
 
-# Conclusion
+## Conclusion
 
 This two packages don't do everything but it's a good step if you don't want to spend a lot of time styling your RMarkdown document. It could also be a first step to more personalized styling as you can export it.
 
-Personly, I really like the "control tower" approach. It doesn't force you to repeat your styling and makes it really easier to change.
+I really like the "control tower" approach. It doesn't force you to repeat your styling and makes it really easier to change the style.
+
+## Some ressources to go further
+
+To learn more about `thematic`, the website present a series of good vignettes. You can also have a look at a presentation made by Carson Sievert, one of the package's author :
+
++ https://rstudio.github.io/thematic/ ;
++ https://bit.ly/thematic-talk.
+
+If you want to learn more about `bootstraplib`, I can recommand you the website and the talks of Joe Cheng at the last rstudio::conf.
+
++ https://rstudio.github.io/bootstraplib/ ;
++ https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&prevCol=6275649&ts=6836.
