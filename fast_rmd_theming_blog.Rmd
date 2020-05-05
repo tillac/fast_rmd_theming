@@ -127,7 +127,7 @@ ggplot(tibble(mtcars,
        caption = "Source : mtcars data")
 ```
 
-You can add a theme to your graph but will need some further coding. But you need to know that the last element overlap your styling. Because complete themes have fonts and/or colors, they may replace your styling. Wouldn't it be useful to adapt some themes to make them compatible by default with `thematic` (see https://github.com/rstudio/thematic/issues/16) ? 
+You can add a theme to your graph but will need some further coding. But you need to know that the last element overlap your styling. Because complete themes have fonts and/or colors, they may replace your styling. If you want to keep your theme, you have to set it before to call `thematic_on()` through a `theme_set(theme_minimal())` as an example (see https://github.com/rstudio/thematic/issues/16).
 
 ```{r, echo = TRUE, fig.align='center'}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
@@ -389,3 +389,7 @@ If you want to learn more about `bootstraplib`, I can recommand you the website 
 
 + https://rstudio.github.io/bootstraplib/ ;
 + https://resources.rstudio.com/rstudio-conf-2020/styling-shiny-apps-with-sass-and-bootstrap-4-joe-cheng?prevItm=0&prevCol=6275649&ts=6836.
+
+## Acknowledgements
+
+
