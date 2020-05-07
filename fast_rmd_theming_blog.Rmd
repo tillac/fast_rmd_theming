@@ -227,7 +227,8 @@ bs_theme_accent_colors(primary = "#741336")
 
 <iframe 
   width = "100%"
-  src ="examples/bootstraplib_gfonts.html">
+  height= 500px
+  src ="https://tillac.github.io/fast_rmd_theming/examples/bootstraplib_gfonts.html">
 </iframe>
 
 You need to keep in mind two things, when using `bootstraplib` for R Markdown :
@@ -369,7 +370,8 @@ thematic_on(font = font_spec("auto", scale = 0.5))
 
 <iframe 
   width = "100%"
-  src ="examples/bootstraplib_thematic.html">
+  height= 500px
+  src ="https://tillac.github.io/fast_rmd_theming/examples/bootstraplib_thematic.html">
 </iframe>
 
 ## Conclusion
