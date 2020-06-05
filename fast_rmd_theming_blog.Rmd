@@ -1,7 +1,7 @@
 ---
 title: "Fast Rmarkdown Theming with `thematic` and `bootstraplib`"
 author: "Thomas Vroylandt"
-date: "04/05/2020"
+date: "05/06/2020"
 output: html_document
 ---
 
@@ -52,7 +52,7 @@ digraph {
 ```
 </center>
 
-Thanks to the new `thematic` package and the not so old `bootstraplib` package, you can fastly build themes for your documents without the problems mentioned above.
+Thanks to the new `thematic` package (https://github.com/rstudio/thematic) and the `bootstraplib` package (https://github.com/rstudio/bootstraplib), you can fastly build themes for your documents without the problems mentioned above.
 
 ## Style your graph theme with `thematic`
 
@@ -144,7 +144,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color =  Species)) +
 thematic_off()
 ```
 
-For the moment, `thematic` doesn't work with interactive graph packages like `plotly` or `ggiraph`. But maybe in the future (see https://talks.cpsievert.me/20200429/#24) ?
+`thematic` may work with interactive graph packages like `plotly` or `ggiraph` if you use some special feature (see  https://github.com/rstudio/shiny/pull/2740 and https://github.com/rstudio/thematic/blob/8ed47c589dd4cb611823a958b46f3ed029685bcf/vignettes/Shiny.Rmd#L69)
 
 ## Use `bootstraplib` for Rmarkdown theming
 
@@ -233,7 +233,7 @@ bs_theme_accent_colors(primary = "#741336")
 
 You need to keep in mind two things, when using `bootstraplib` for R Markdown :
 
-+ The package doesn't work yet with `xaringan` and `pagedown` for the moment and strangely with `flexdashboard`.
++ The package doesn't work yet with `xaringan` and `pagedown` for the moment, because they are not made with Bootstrap, and strangely with `flexdashboard`. However you can use the excellent `xaringanthemer` for your presentation (https://github.com/gadenbuie/xaringanthemer).
 
 + You will need to style your table manually. For the moment, only `kable` works well. This comes from the tables packages CSS behavior. The other packages I tested all failed on one part :
 
@@ -394,4 +394,4 @@ If you want to learn more about `bootstraplib`, I can recommand you the website 
 
 ## Acknowledgements
 
-
+I would like to thank [Christophe Dervieux](https://twitter.com/chrisderv) and [Romain Lesur](https://twitter.com/rlesur) for their big help with this articles.
